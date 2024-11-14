@@ -51,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Next.js uygulamanızın domaini
+        config.setAllowedOrigins(Arrays.asList("https://akyabutik.com","http://akyabutik.com","https://www.akyabutik.com","http://www.akyabutik.com")); // Next.js uygulamanızın domaini
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         config.addAllowedHeader("*");
         config.setAllowCredentials(true); // Kimlik doğrulama bilgilerini paylaşmak için
