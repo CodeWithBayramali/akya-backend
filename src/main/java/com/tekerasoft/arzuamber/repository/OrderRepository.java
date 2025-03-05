@@ -3,6 +3,8 @@ package com.tekerasoft.arzuamber.repository;
 import com.tekerasoft.arzuamber.model.Order;
 import com.tekerasoft.arzuamber.model.OrderStatus;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +25,7 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     void updateOrderStatus(@Param("orderId") UUID orderId, @Param("status") OrderStatus status);
 
     Optional<Order> findByPaymentId(String paymentId);
+
+    Page<Order> findAllByOrderByCreatedAtDesc(Pageable pageable);
+
 }

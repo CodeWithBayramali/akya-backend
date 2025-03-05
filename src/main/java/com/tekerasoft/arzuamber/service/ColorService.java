@@ -26,8 +26,8 @@ public class ColorService {
         }
     }
 
-    public List<Color> getAllColors(String lang) {
-        return colorRepository.findByLangIgnoreCase(lang);
+    public List<Color> getAllColors() {
+        return colorRepository.findAll();
     }
 
     public ApiResponse<?> deleteColor(String colorId) {

@@ -3,6 +3,7 @@ package com.tekerasoft.arzuamber.dto
 import com.tekerasoft.arzuamber.model.*
 import java.math.BigDecimal
 import java.time.LocalDateTime
+import java.util.*
 
 data class OrderDto(
     val buyer: BuyerDto,
@@ -10,9 +11,10 @@ data class OrderDto(
     val billingAddress: AddressDto,
     val basketItems: List<BasketItemDto>,
     val totalPrice: BigDecimal,
-    val status: OrderStatus = OrderStatus.PENDING,
+    val status: OrderStatus,
     val createdAt: LocalDateTime,
     val paymentId: String? = null,
+    val id: UUID?,
 ) {
     companion object {
         @JvmStatic
@@ -29,6 +31,7 @@ data class OrderDto(
                 from.status,
                 from.createdAt,
                 from.paymentId,
+                from.id
             )
         }
 

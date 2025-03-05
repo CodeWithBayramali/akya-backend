@@ -7,7 +7,6 @@ import java.util.*
 @Table(name = "colors")
 data class Color @JvmOverloads constructor(
     val name: String,
-    val lang: String,
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

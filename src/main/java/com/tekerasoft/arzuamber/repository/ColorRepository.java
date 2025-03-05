@@ -7,5 +7,4 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ColorRepository extends JpaRepository<Color, UUID> {
-    List<Color> findByLangIgnoreCase(String lang);
 }

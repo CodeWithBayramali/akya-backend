@@ -1,9 +1,6 @@
 package com.tekerasoft.arzuamber.controller;
 
-import com.tekerasoft.arzuamber.dto.BlogDto;
-import com.tekerasoft.arzuamber.dto.CategoryDto;
-import com.tekerasoft.arzuamber.dto.OrderDto;
-import com.tekerasoft.arzuamber.dto.ProductDto;
+import com.tekerasoft.arzuamber.dto.*;
 import com.tekerasoft.arzuamber.dto.request.*;
 import com.tekerasoft.arzuamber.dto.response.ApiResponse;
 import com.tekerasoft.arzuamber.model.Blog;
@@ -42,19 +39,17 @@ public class AdminController {
     }
 
     @PostMapping("/create-product")
-    public ResponseEntity<ApiResponse<?>> createProduct(@RequestParam String lang,
-                                                        @RequestPart("data") CreateProductRequest createProductRequest,
+    public ResponseEntity<ApiResponse<?>> createProduct(@RequestPart("data") CreateProductRequest createProductRequest,
                                                         @RequestPart("images") List<MultipartFile> images) {
-        return ResponseEntity.ok(productService.createProduct(lang,createProductRequest,images));
+        return ResponseEntity.ok(productService.createProduct(createProductRequest,images));
     }
 
     @PutMapping("/update-product")
-    public ResponseEntity<ApiResponse<?>> updateProduct(@RequestParam String lang,
-                                                        @RequestParam("data") String dataJson,
+    public ResponseEntity<ApiResponse<?>> updateProduct(@RequestParam("data") String dataJson,
                                                         @RequestPart(value = "images", required = false)
                                                             List<MultipartFile> images) throws RuntimeException {
         try {
-            return ResponseEntity.ok(productService.updateProduct(lang,dataJson,images));
+            return ResponseEntity.ok(productService.updateProduct(dataJson,images));
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -68,10 +63,9 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-product")
-    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getAllProduct(@RequestParam String lang,
-                                           @RequestParam int page,
-                                           @RequestParam int size) {
-        return ResponseEntity.ok(productService.getAllProducts(lang,page, size));
+    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getAllProduct(@RequestParam int page,
+                                                                             @RequestParam int size) {
+        return ResponseEntity.ok(productService.getAllAdminProducts(page, size));
     }
 
     @GetMapping("/get-product")
@@ -84,7 +78,7 @@ public class AdminController {
         return ResponseEntity.ok(orderService.getAllOrders(page,size));
     }
 
-    @GetMapping("/delete-order")
+    @DeleteMapping("/delete-order")
     public ResponseEntity<ApiResponse<?>> deleteOrder(@RequestParam String id) {
         return ResponseEntity.ok(orderService.deleteOrder(id));
     }
@@ -105,8 +99,8 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-category")
-    public ResponseEntity<List<CategoryDto>> getAllCategory(@RequestParam String lang) {
-        return ResponseEntity.ok(categoryService.getAllCategories(lang));
+    public ResponseEntity<List<CategoryDto>> getAllCategory() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
     @PutMapping("update-price-by-percentage")
@@ -120,8 +114,8 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-colors")
-    public ResponseEntity<List<Color>> getAllColors(@RequestParam String lang) {
-        return ResponseEntity.ok(colorService.getAllColors(lang));
+    public ResponseEntity<List<Color>> getAllColors() {
+        return ResponseEntity.ok(colorService.getAllColors());
     }
 
     @DeleteMapping("/delete-color")
@@ -142,7 +136,7 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-contact")
-    public ResponseEntity<PagedModel<EntityModel<Contact>>> getAllContact(@RequestParam int page, @RequestParam int size) {
+    public ResponseEntity<PagedModel<EntityModel<ContactDto>>> getAllContact(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(contactService.getAllContacts(page,size));
     }
 

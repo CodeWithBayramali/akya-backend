@@ -24,37 +24,34 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getAllProducts(@RequestParam String lang, @RequestParam int page,
+    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getAllProducts(@RequestParam int page,
                                                                               @RequestParam int size) {
-        return ResponseEntity.ok(productService.getAllProductsByActive(lang, page, size));
+        return ResponseEntity.ok(productService.getAllProducts(page, size));
     }
 
     @GetMapping("/get-all-new-season")
-    public ResponseEntity<List<ProductDto>> getAllNewSeasonProduct(@RequestParam String lang, @RequestParam int page,
+    public ResponseEntity<List<ProductDto>> getAllNewSeasonProduct(@RequestParam int page,
                                                                    @RequestParam int size) {
-        return ResponseEntity.ok(productService.getAllNewSeasonProduct(lang, page, size));
+        return ResponseEntity.ok(productService.getAllNewSeasonProduct(page, size));
     }
 
     @GetMapping("/get-all-populate")
-    public ResponseEntity<List<ProductDto>> getAllPopulateProduct(@RequestParam String lang, @RequestParam int page,
+    public ResponseEntity<List<ProductDto>> getAllPopulateProduct(@RequestParam int page,
                                                                    @RequestParam int size) {
-        return ResponseEntity.ok(productService.getAllPopulateProduct(lang, page, size));
+        return ResponseEntity.ok(productService.getAllPopulateProduct(page, size));
     }
 
     @GetMapping("/get-product")
-    public ResponseEntity<ProductDto> getProduct(@RequestParam String lang, @RequestParam String slug) {
-        return ResponseEntity.ok(productService.getProductBySlug(lang,slug));
+    public ResponseEntity<ProductDto> getProduct(@RequestParam String slug) {
+        return ResponseEntity.ok(productService.getProductBySlug(slug));
     }
 
     @GetMapping("/filter-product")
-    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getProductFilter(@RequestParam(required = false) String lang,
-                                                             @RequestParam(required = false) String size,
-                                                             @RequestParam(required = false) String color,
-                                                             @RequestParam(required = false) String category,
-                                                             @RequestParam(required = false) String length,
+    public ResponseEntity<PagedModel<EntityModel<ProductDto>>> getProductFilter(
+                                                             @RequestParam(required = false) String subCategory,
                                                              @RequestParam int page, @RequestParam int pageSize)
     {
-        return ResponseEntity.ok(productService.filterProducts(lang,size,color,category,length,page,pageSize));
+        return ResponseEntity.ok(productService.filterProducts(subCategory,page,pageSize));
     }
 
 }

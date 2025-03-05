@@ -15,22 +15,23 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<Product, UUID> {
-    Page<Product> findByLangIgnoreCase(String lang, Pageable pageable);
 
-    Page<Product> findByLangIgnoreCaseAndIsActiveTrue(String lang, Pageable pageable);
+    Page<Product> findAllByIsActiveTrueOrderByCreatedAtDesc(Pageable pageable);
 
-    Optional<Product> findByLangIgnoreCaseAndSlugIgnoreCase(String lang, String slug);
+    Page<Product> findByIsActiveTrue(Pageable pageable);
+
+    Optional<Product> findBySlugIgnoreCase(String slug);
 
     @Modifying
     @Transactional
     @Query("UPDATE Product p SET p.isActive = :isActive WHERE p.id = :productId")
     void updateIsActive(@Param("productId") UUID productId, @Param("isActive") boolean isActive);
 
-    @Query("SELECT t FROM Product t WHERE t.newSeason = true AND t.lang = :lang AND t.isActive = true")
-    Page<Product> findByNewSeasonTrueAndLangIgnoreCaseAndIsActiveTrue(@Param("lang") String lang, Pageable pageable);
+    @Query("SELECT t FROM Product t WHERE t.newSeason = true AND t.isActive = true")
+    Page<Product> findByNewSeasonTrueAndIsActiveTrue(Pageable pageable);
 
-    @Query("SELECT t FROM Product t WHERE t.populate = true AND t.lang = :lang AND t.isActive = true")
-    Page<Product> findByPopulateTrueAndLangIgnoreCaseAndIsActiveTrue(@Param("lang") String lang, Pageable pageable);
+    @Query("SELECT t FROM Product t WHERE t.populate = true AND t.isActive = true")
+    Page<Product> findByPopulateTrueAndIsActiveTrue(Pageable pageable);
 
     @Query("SELECT t FROM Product t WHERE t.price IS NOT NULL")
     List<Product> findAllProductPrices();
@@ -54,21 +55,12 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     @Query("""
     SELECT DISTINCT p FROM Product p
-    JOIN p.colorSize cs
-    JOIN cs.stockSize ss
     WHERE
-        (COALESCE(:color, cs.color) = cs.color)
-        AND (COALESCE(:size, ss.size) = ss.size)
-        AND (COALESCE(:category, p.category) = p.category)
-        AND (COALESCE(:length, p.length) = p.length)
-        AND (COALESCE(:lang, p.lang) = p.lang)
+        (:subCategory IS NULL OR p.subCategory = :subCategory)
+        AND (p.isActive = true)
 """)
     Page<Product> findProductsByFilters(
-            @Param("color") String color,
-            @Param("size") String size,
-            @Param("category") String category,
-            @Param("length") String length,
-            @Param("lang") String lang,
+            @Param("subCategory") String subCategory,
             Pageable pageable
     );
 }

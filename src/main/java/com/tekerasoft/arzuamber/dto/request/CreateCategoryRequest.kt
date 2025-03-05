@@ -9,7 +9,5 @@ data class CreateCategoryRequest(
     @JsonProperty("name")
     val name: String,
     @JsonProperty("subCategories")
-    val subCategories: List<String>,
-    @JsonProperty("lang")
-    val lang: String,
+    val subCategories: List<String>
 )

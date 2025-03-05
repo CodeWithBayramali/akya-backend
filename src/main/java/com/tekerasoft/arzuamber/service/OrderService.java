@@ -50,7 +50,8 @@ public class OrderService {
     }
 
     public PagedModel<EntityModel<OrderDto>> getAllOrders(int page, int size) {
-        return pagedResourcesAssembler.toModel(orderRepository.findAll(PageRequest.of(page, size)).map(OrderDto::toDto));
+        return pagedResourcesAssembler.toModel(orderRepository.findAllByOrderByCreatedAtDesc(PageRequest.of(page, size))
+                .map(OrderDto::toDto));
     }
 
     public ApiResponse<?> deleteOrder(String orderId) {

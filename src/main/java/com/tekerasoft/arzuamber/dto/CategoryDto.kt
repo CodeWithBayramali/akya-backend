@@ -7,8 +7,7 @@ import java.util.UUID
 data class CategoryDto(
     val id: UUID,
     val name: String,
-    val subCategories: List<String>?,
-    val lang: String
+    val subCategories: List<String>?
 ) {
     companion object {
         @JvmStatic
@@ -17,7 +16,6 @@ data class CategoryDto(
                 from.id,
                 from.name,
                 from.subCategories,
-                from.lang,
             )
         }
 
@@ -27,7 +25,6 @@ data class CategoryDto(
                 from.id,
                 from.name,
                 from.subCategories,
-                from.lang,
             )
         }
     }

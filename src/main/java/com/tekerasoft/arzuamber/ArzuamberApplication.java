@@ -29,13 +29,13 @@ public class ArzuamberApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Optional<User> userOptional = userRepository.findByEmail("arzuambermoda@gmail.com");
+        Optional<User> userOptional = userRepository.findByEmail("akyabutik-admin@gmail.com");
         if(userOptional.isEmpty()) {
             userRepository.save(new User(
-                    "Arzu",
-                    "AMBER",
-                    "arzuambermoda@gmail.com",
-                    passwordEncoder.encode("479408Aa"),
+                    "Kübra",
+                    "DURSUN",
+                    "akyabutik-admin@gmail.com",
+                    passwordEncoder.encode("Wweeqq11."),
                     setOf(Role.ADMIN)
             ));
         }

@@ -1,30 +1,33 @@
 spring:
   application:
-    name: arzuamber
+    name: akyabutik
 
   origin:
-    url: https://arzuamber.com
+    url: https://akyabutik.com
+    #url: http://localhost:3000
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://arzuamber-db:5432/arzuamber-db
-    #url: jdbc:postgresql://localhost:5435/arzuamber-db
-    username: arzuamber_user
-    password: arzuamber_pass
+    url: jdbc:postgresql://akya-db:5432/akyabutik-db
+    #url: jdbc:postgresql://localhost:5435/akyabutik-db
+    username: akyabutik_user
+    password: akyabutik_pass
   jpa:
-    database: postgresql
-    hibernate:
-      ddl-auto: update
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+          ddl-auto: validate
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
 
   minio:
-    url: http://arzuamber-blob-storage:9000
+    url: http://akya-blob-storage:9000
     #url: http://localhost:9000
-    user: arzuamber_user
-    password: arzuamber_pass
-    bucket-name: arzuamber-bucket
+    user: akyabutik_user
+    password: akyabutik_pass
+    bucket-name: akyabutik-bucket
 
   jwt:
     secret_keys: "RDDCT6me8cETAsAiABsYc0FwzLlu4CcNJWMBV8OdGt8Qrt2hleK1W/p/9K8kJuaNcqnsVgZ6PvfR2QcshYBGBqH3MJVekOHlQoyM9VspWkYFNovzBn/QOPiHyLGsaDhB/KIUleVCaMJK3YktQavVvGsFbld1QYXqnkeLZ9jb5tw="
@@ -33,14 +36,17 @@ spring:
       expiration: 604800000
 
   iyzico:
-    api_key: wsXNHznkvp2vwa2uwPkTBatTldHuz0GZ
-    secret_key: i00wXXujkkfzsbRFF8W9GDKhqCE8MWSR
+    api_key: qM1BnXp3wSB1rpEqX29xIHsNgaCgPPTS
+    secret_key: hNwzLZTT4HyxLxk2sooQgqVBfZ0Omreb
     base_url: https://api.iyzipay.com
+    #api_key: sandbox-4mlmZxqqpEvkFn61GClqGpDpt0cYZuA2
+    #secret_key: sandbox-m4UURbHi8klCbIqCiCWsjlyJG8mTfuG4
+    #base_url: https://sandbox-api.iyzipay.com
 
   #payment:
   #  callback-url: http://localhost:8080/v1/api/order/complete-threeds
   payment:
-    callback-url: https://arzuamber.com/v1-api/order/complete-threeds
+    callback-url: https://akyabutik.com/v1-api/order/complete-threeds
 
   servlet:
     multipart:

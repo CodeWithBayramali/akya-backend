@@ -1,23 +1,7 @@
 package com.tekerasoft.arzuamber.model
 
 enum class OrderStatus {
-    PENDING,
-    AWAITING_PAYMENT,
-    PAID,
-
-    PROCESSING,
-    AWAITING_SHIPMENT,
-    AWAITING_FULFILLMENT,
-
+   PAID,
     SHIPPED,
-    IN_TRANSIT,
-    OUT_FOR_DELIVERY,
-
-    DELIVERED,
-    FAILED_DELIVERY,
-
-    CANCELLED,
-    REFUNDED,
-    RETURN_REQUESTED,
-    RETURNED
+    CANCELLED
 }

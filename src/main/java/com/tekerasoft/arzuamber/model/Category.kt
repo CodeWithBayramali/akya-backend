@@ -12,7 +12,5 @@ data class Category(
     val name: String,
 
     @ElementCollection
-    var subCategories: List<String>? = listOf(),
-
-    val lang: String,
+    var subCategories: List<String>? = listOf()
 )

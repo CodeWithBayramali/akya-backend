@@ -28,7 +28,7 @@ public class CategoryService {
         }
     }
 
-    public List<CategoryDto> getAllCategories(String lang) {
-        return categoryRepository.findByLangIgnoreCase(lang).stream().map(CategoryDto::toDto).toList();
+    public List<CategoryDto> getAllCategories() {
+        return categoryRepository.findAll().stream().map(CategoryDto::toDto).toList();
     }
 }

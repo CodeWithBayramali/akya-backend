@@ -13,6 +13,6 @@ COPY src src
 RUN ./mvnw package -DskipTests  # Skip Test
 
 FROM openjdk:17
-WORKDIR /arzuamber
-COPY --from=build target/*.jar arzuamber.jar
-ENTRYPOINT ["java", "-jar", "arzuamber.jar"]
+WORKDIR /akyabutik
+COPY --from=build target/*.jar akyabutik.jar
+ENTRYPOINT ["java", "-jar", "akyabutik.jar"]

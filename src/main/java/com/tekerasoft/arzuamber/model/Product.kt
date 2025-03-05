@@ -17,14 +17,14 @@ data class Product @JvmOverloads constructor(
     val newSeason: Boolean,
     val category: String,
     val subCategory: String,
+    @Column(columnDefinition = "TEXT")
     val description: String,
     var price: BigDecimal,
-    val lang: String,
     val length: String,
 
     @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    var colorSize: Set<ColorSize>,
+    var colorSize: List<ColorSize>,
     val totalStock: Int? = 0,
     val purchasePrice: BigDecimal?= BigDecimal.ZERO,
     val discountPrice: BigDecimal? = BigDecimal.ZERO,

@@ -1,44 +1,43 @@
 services:
   # PostgreSQL Database
-  arzuamber-db:
+  akya-db:
     image: postgres:latest
-    container_name: arzuamber-db
+    container_name: akya-db
     ports:
       - "5435:5432"  # Host portu ile container portunu eşliyoruz
     environment:
-      - POSTGRES_USER=arzuamber_user
-      - POSTGRES_PASSWORD=arzuamber_pass
-      - POSTGRES_DB=arzuamber-db
+      - POSTGRES_USER=akyabutik_user
+      - POSTGRES_PASSWORD=akyabutik_pass
+      - POSTGRES_DB=akyabutik-db
     networks:
       - my-network
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Veritabanı verilerini hostta sakla
+      - postgres_data_akyabutik:/var/lib/postgresql/data  # Veritabanı verilerini hostta sakla
     restart: unless-stopped  # Sistem yeniden başlarsa veri kaybolmaz
 
   # MinIO (Blob Storage)
-  minio:
+  akya-blob-storage:
     image: 'bitnami/minio:latest'
-    container_name: arzuamber-blob-storage
+    container_name: akya-blob-storage
     ports:
       - "9000:9000"
       - "9001:9001"
     environment:
-      - MINIO_ROOT_USER=arzuamber_user
-      - MINIO_ROOT_PASSWORD=arzuamber_pass
+      - MINIO_ROOT_USER=akyabutik_user
+      - MINIO_ROOT_PASSWORD=akyabutik_pass
     volumes:
-      - minio_data:/data  # MinIO verilerini hostta sakla
+      - minio_data_akyabutik:/data  # MinIO verilerini hostta sakla
     networks:
       - my-network
     restart: unless-stopped
 
-  # Spring Boot Application
-  arzuamber-api:
+  akya-api:
     build:
       context: .
-    container_name: arzuamber-api
+    container_name: akya-api
     depends_on:
-      - arzuamber-db
-      - minio
+      - akya-db
+      - akya-blob-storage
     ports:
       - "9090:8080"
     networks:
@@ -46,8 +45,8 @@ services:
     restart: unless-stopped
 
 volumes:
-  postgres_data: {}  # PostgreSQL için volume tanımı
-  minio_data: {}     # MinIO için volume tanımı
+  postgres_data_akyabutik:  # PostgreSQL için volume tanımı
+  minio_data_akyabutik:    # MinIO için volume tanımı
 
 networks:
   my-network:
