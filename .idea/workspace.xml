@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7b43e65-a156-4ce9-a6d2-88686d631929" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d6dbe5-f065-4572-b4c0-60aac1a4befb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/70d6dbe5-f065-4572-b4c0-60aac1a4befb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tekerasoft/arzuamber/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tekerasoft/arzuamber/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tekerasoft/arzuamber/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tekerasoft/arzuamber/service/CategoryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +226,8 @@
       <workItem from="1741158011935" duration="25000" />
       <workItem from="1741190998208" duration="10593000" />
       <workItem from="1741244620885" duration="993000" />
-      <workItem from="1741277984048" duration="1505000" />
+      <workItem from="1741277984048" duration="2388000" />
+      <workItem from="1741283943285" duration="37000" />
     </task>
     <servers />
   </component>
