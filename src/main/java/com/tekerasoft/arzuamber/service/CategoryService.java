@@ -16,7 +16,6 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-
     public ApiResponse<?> createCategory(List<CreateCategoryRequest> categoryRequest) {
         try {
             for(CreateCategoryRequest req : categoryRequest) {
